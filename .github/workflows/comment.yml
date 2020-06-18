@@ -1,0 +1,23 @@
+name: add_comment
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/github-script@v2
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.issues.createComment({
+           issue_number: context.issue.number,
+           owner: context.repo.owner,
+           repo: context.repo.repo,
+           title: 'Daily issue'
+           body: 'created'
+          })
+          
