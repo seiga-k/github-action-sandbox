@@ -2,7 +2,7 @@ name: add_comment
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '*/15 * * * *'
 
 jobs:
   comment:
@@ -17,7 +17,7 @@ jobs:
            issue_number: context.issue.number,
            owner: context.repo.owner,
            repo: context.repo.repo,
-           title: 'Daily issue'
+           title: 'Daily issue',
            body: 'created'
           })
           
