@@ -2,7 +2,7 @@ name: add_comment
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   comment:
@@ -20,4 +20,3 @@ jobs:
            title: 'Daily issue',
            body: 'created'
           })
-          
