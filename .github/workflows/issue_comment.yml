@@ -9,7 +9,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: run-script
-        run: echo.bash
+        run: ./echo.bash
       - uses: actions/github-script@v2
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
