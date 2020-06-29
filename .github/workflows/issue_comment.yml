@@ -9,7 +9,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: run-script
-        run: ./echo.bash
+        run: |
+          ./echo.bash
+          echo "::set-output name=output::fuga"
       - uses: actions/github-script@v2
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -18,5 +20,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "${{ steps.run-script.outputs }}"
+              body: "${{ steps.run-script.outputs.output }}"
             })
