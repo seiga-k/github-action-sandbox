@@ -8,6 +8,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: check files
+        run: |
+          ls
+      - name: create file
+        run: |
+          echo "Temp file" > temp.tmp
+      - name: check files2
+        run: |
+          ls
       - name: run-script
         id: run-script
         run: |
