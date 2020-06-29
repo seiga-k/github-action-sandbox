@@ -1,6 +1,6 @@
 on:
   issues:
-    types: [opened]
+    types: [opened,edited,reopened]
 
 jobs:
   comment:
@@ -9,9 +9,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: run-script
+        id: run-script
         run: |
           ./echo.bash
           echo "::set-output name=output::fuga"
+      - name: get-output
+        run: echo ${{ steps.run-script.outputs.output }}
       - uses: actions/github-script@v2
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
