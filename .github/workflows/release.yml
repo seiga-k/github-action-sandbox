@@ -8,9 +8,7 @@ on:
 jobs:
   tag-release:
     runs-on: ubuntu-latest
-    if: |
-        github.event.pull_request.merged \
-        && startsWith(github.event.pull_request.title, 'Release ')
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release ')
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -21,6 +19,4 @@ jobs:
         run: |
           VERSION=$(echo ${{ github.event.pull_request.title }} \
             | sed -e 's/^Release \(.*\)$/\1/')
-          echo ${VERSION}
-          echo tagged
-  
+          echo ${VERSION}  
