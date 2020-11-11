@@ -8,7 +8,9 @@ on:
 jobs:
   tag-release:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.title, 'Release ')
+    if: |
+      github.event.pull_request.merged == true
+      && startsWith(github.event.pull_request.title, 'Release ')
     steps:
       - name: checkout
         uses: actions/checkout@v2
