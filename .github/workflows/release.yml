@@ -1,0 +1,24 @@
+name: release
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  tag-release:
+    runs-on: ubuntu-latest
+    if: |
+        github.event.pull_request.merged \
+        && startsWith(github.event.pull_request.title, 'Release ')
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: tag
+        id: tag
+        run: |
+          VERSION=$(echo ${{ github.event.pull_request.title }} \
+            | sed -e 's/^Release \(.*\)$/\1/')
+          echo ${VERSION}
