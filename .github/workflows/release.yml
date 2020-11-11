@@ -22,3 +22,5 @@ jobs:
           VERSION=$(echo ${{ github.event.pull_request.title }} \
             | sed -e 's/^Release \(.*\)$/\1/')
           echo ${VERSION}
+          echo tagged
+  
